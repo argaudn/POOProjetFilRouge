@@ -5,7 +5,7 @@ import java.io.Serializable;
 import nutsAndBolts.PieceSquareColor;
 
 /**
- * *
+ * 
  * @author francoise.perrin
  *
  * Objet � destination de la View
