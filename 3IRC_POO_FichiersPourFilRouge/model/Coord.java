@@ -1,6 +1,6 @@
 package model;
 
-
+import java.util.HashMap;
 
 /**
  * @author francoiseperrin
@@ -23,6 +23,7 @@ public class Coord implements Comparable<Coord>{
 		return colonne;
 	}
 
+
 	public int getLigne() {
 		return ligne;
 	}
@@ -31,6 +32,10 @@ public class Coord implements Comparable<Coord>{
 	@Override
 	public String toString() {
 		return "["+ligne + "," + colonne + "]";
+	}
+	
+	public boolean equals(Coord coord){
+		return this.colonne == coord.colonne && this.ligne == coord.ligne;
 	}
 
 
@@ -59,21 +64,32 @@ public class Coord implements Comparable<Coord>{
 	 */
 	@Override
 	public int compareTo(Coord o) {
-		
-		int coordA = 0;
-		int coordB = 0;
-		
-		for(int i=0; i<o.getColonne();i++){
-			for(int j=0;j<o.getLigne();j++){
-				coordA++;	
-			}
-		}
-		for(int i=0;i<this.colonne;i++){
-			for(int j=0;j<this.ligne;j++) {
-				coordB++;
-			}		
-		}
-		return coordB-coordA;
+		HashMap<String,Integer> colonnes = new HashMap<String,Integer>();
+		colonnes.put("a", 1);
+		colonnes.put("b", 2);
+		colonnes.put("c", 3);
+		colonnes.put("d", 4);
+		colonnes.put("e", 5);
+		colonnes.put("f", 6);
+		colonnes.put("g", 7);
+		colonnes.put("h", 8);
+		colonnes.put("i", 9);
+		colonnes.put("j", 10);
+		HashMap<Integer,Integer> lignes = new HashMap<Integer,Integer>();
+		lignes.put(1, 9);
+		lignes.put(2, 8);
+		lignes.put(3, 7);
+		lignes.put(4, 6);
+		lignes.put(5, 5);
+		lignes.put(6, 4);
+		lignes.put(7, 3);
+		lignes.put(8, 2);
+		lignes.put(9, 1);
+		lignes.put(10, 0);
+		int ordreA = lignes.get(this.ligne) *10 + (colonnes.get(""+this.colonne));
+		int ordreB =lignes.get(o.getLigne()) *10 + (colonnes.get(""+o.getColonne()));
+		return ordreA-ordreB;
 	}
+	
 
 }

@@ -16,16 +16,42 @@ import nutsAndBolts.PieceSquareColor;
 /**
  * @author francoiseperrin
  * 
- * Classe d'affichage des carrés du damier
- * leur couleur est initialisé par les couleurs par défaut du jeu
+ * Classe d'affichage des carrï¿½s du damier
+ * leur couleur est initialisï¿½ par les couleurs par dï¿½faut du jeu
  *
  */
 class SquareGui extends BorderPane implements CheckersSquareGui {
-
-	// ToDo Atelier 2
+	
+	private int col;
+	private int ligne;
+	
+	public SquareGui(Integer col, Integer ligne) {
+		this.col = col;
+		this.ligne=ligne;
+	}
+	
+	public BorderPane createSquare() {
+		BorderPane square = null;
+		PieceSquareColor squareColor;
+		
+		// sï¿½lection de la couleur de la case
+		if ((this.col % 2 == 0 && this.ligne % 2 == 0) || (this.col % 2 != 0 && this.ligne % 2 != 0)) {
+			squareColor = PieceSquareColor.WHITE;
+		} else {
+			squareColor = PieceSquareColor.BLACK;
+		}
+		square = new BorderPane();
+		
+		// la couleur est dï¿½finie par les valeurs par dï¿½faut de configuration
+		Color color = PieceSquareColor.BLACK.equals(squareColor) ? GuiConfig.CASEBLACK : GuiConfig.CASEWHITE;
+		square.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+		square.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+		
+		return square;
+	}
 
 	/**
-	 *Retourne l'indice du carré sur la grille (N° de 0 à 99)
+	 *Retourne l'indice du carrï¿½ sur la grille (Nï¿½ de 0 ï¿½ 99)
 	 */
 	@Override
 	public int getSquareCoord() {
