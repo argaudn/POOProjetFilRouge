@@ -37,8 +37,15 @@ public class GuiFactory {
 	 * la case en bas � gauche est noire
 	 */
 	public static BorderPane createSquare(int col, int ligne) {
-
-		return new SquareGui(col,ligne).createSquare();
+		SquareGui square = null;
+		
+		// s�lection de la couleur de la case
+		if ((col % 2 == 0 && ligne % 2 == 0) || (col % 2 != 0 && ligne % 2 != 0)) {
+			square = new SquareGui(PieceSquareColor.WHITE);
+		} else {
+			square = new SquareGui(PieceSquareColor.BLACK);
+		};
+		return square;
 		
 	}
 
@@ -49,8 +56,14 @@ public class GuiFactory {
 	 * des 4 lignes du haut (piece noire) et du bas du damier (piece blanche)
 	 */
 	public static ImageView createPiece(int col, int ligne) {
-
-		return new PieceGui(col,ligne).createPiece();
+		PieceGui piece = null;
+		if  ( !((col % 2 == 0 && ligne % 2 == 0) || (col % 2 != 0 && ligne % 2 != 0)) ) {
+			if (ligne < 4)
+				piece = new PieceGui(PieceSquareColor.BLACK);
+			if (ligne > 5)
+				piece = new PieceGui(PieceSquareColor.WHITE);
+		}
+		return piece;
 	}
 
 	/**

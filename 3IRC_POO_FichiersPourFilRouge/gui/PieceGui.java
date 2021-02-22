@@ -17,33 +17,15 @@ import nutsAndBolts.PieceSquareColor;
  */
 
 public class PieceGui extends ImageView implements CheckersPieceGui {
-	private int col;
-	private int ligne;
 	
-	public PieceGui(Integer col, Integer ligne) {
-		this.col = col;
-		this.ligne=ligne;
-	}
-	
-	public ImageView createPiece() {
-
-		ImageView pieceGui = null;
+	public PieceGui(PieceSquareColor pieceColor) {
 		Image image = null;
-		PieceSquareColor pieceColor = null;
+		
 
-		if  ( !((this.col % 2 == 0 && this.ligne % 2 == 0) || (this.col % 2 != 0 && this.ligne % 2 != 0)) ) {
-			if (ligne < 4)
-				pieceColor = PieceSquareColor.BLACK;
-			if (ligne > 5)
-				pieceColor = PieceSquareColor.WHITE;
-		}
 		if (pieceColor != null) {
 			image = PieceGui.createImage(pieceColor, true);
-			pieceGui = new ImageView();
-			pieceGui.setImage(image);
+			this.setImage(image);
 		}
-
-		return pieceGui;
 	}
 	
 	/**

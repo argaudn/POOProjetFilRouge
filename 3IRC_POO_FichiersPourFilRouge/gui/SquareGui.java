@@ -22,33 +22,15 @@ import nutsAndBolts.PieceSquareColor;
  */
 class SquareGui extends BorderPane implements CheckersSquareGui {
 	
-	private int col;
-	private int ligne;
-	
-	public SquareGui(Integer col, Integer ligne) {
-		this.col = col;
-		this.ligne=ligne;
-	}
-	
-	public BorderPane createSquare() {
-		BorderPane square = null;
-		PieceSquareColor squareColor;
-		
-		// s�lection de la couleur de la case
-		if ((this.col % 2 == 0 && this.ligne % 2 == 0) || (this.col % 2 != 0 && this.ligne % 2 != 0)) {
-			squareColor = PieceSquareColor.WHITE;
-		} else {
-			squareColor = PieceSquareColor.BLACK;
-		}
-		square = new BorderPane();
-		
+	public SquareGui(PieceSquareColor squareColor) {
+		super();
 		// la couleur est d�finie par les valeurs par d�faut de configuration
 		Color color = PieceSquareColor.BLACK.equals(squareColor) ? GuiConfig.CASEBLACK : GuiConfig.CASEWHITE;
-		square.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
-		square.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+		this.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+		this.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		
-		return square;
 	}
+	
 
 	/**
 	 *Retourne l'indice du carr� sur la grille (N� de 0 � 99)

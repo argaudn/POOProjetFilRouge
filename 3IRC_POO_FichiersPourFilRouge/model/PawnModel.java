@@ -2,6 +2,7 @@ package model;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -77,9 +78,38 @@ public class PawnModel implements PieceModel{
 	public List<Coord> getCoordsOnItinerary(Coord targetCoord) {
 
 		List<Coord> coordsOnItinery = new LinkedList<Coord>(); 
-
-		// TODO Atelier 2
-
+		List<Character> tab = Arrays.asList('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j');
+		char colonne = this.getColonne();
+		int ligne = this.getLigne();
+		Coord prochaineCase = this.coord;
+		
+		boolean destinationFinale = false;
+		int index = 0;
+		while (!destinationFinale && index < 5) {
+			//ligne
+			if (ligne < targetCoord.getLigne()) {
+				ligne = ligne +1;
+			}
+			else {
+				ligne = ligne -1; 
+			}
+			
+			int indexColonne = tab.get(tab.indexOf(prochaineCase.getColonne()));
+			
+			if (indexColonne < tab.get(tab.indexOf(targetCoord.getColonne()) {
+				colonne = tab.get(indexColonne + 1);
+			}
+			else {
+				colonne = tab.get(indexColonne - 1);
+			}
+			prochaineCase = new Coord(colonne,ligne);
+			coordsOnItinery.add(prochaineCase);
+		
+			if (targetCoord.compareTo(prochaineCase)==0){
+				destinationFinale = true;
+			}
+			index +=1;
+		}
 		return coordsOnItinery;
 	}
 

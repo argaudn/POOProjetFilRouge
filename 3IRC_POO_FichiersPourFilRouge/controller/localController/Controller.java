@@ -81,6 +81,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 				checkersPieceGuiHandle(mouseEvent);
 		}
 		catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -94,8 +95,10 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 		ImageView selectedPiece = (ImageView) mouseEvent.getSource();
 
 		// Recherche et fixe coordonn�e de la pi�ce s�lectionn�e 
-		CheckersSquareGui parentSquare = (CheckersSquareGui)  selectedPiece.getParent();
-		this.setToMovePieceIndex(parentSquare.getSquareCoord());
+		if (selectedPiece.getParent() instanceof CheckersSquareGui) {
+			CheckersSquareGui parentSquare = (CheckersSquareGui)  selectedPiece.getParent();
+			this.setToMovePieceIndex(parentSquare.getSquareCoord());
+		}
 
 		mouseEvent.consume();
 	}
@@ -137,7 +140,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 	 */
 	@Override
 	public OutputModelData<Integer> moveCapturePromote(Integer toMovePieceIndex, Integer targetSquareIndex) {
-
+		System.out.println("coucou");
 		OutputModelData<Integer> outputControllerData = null;
 	
 		OutputModelData<Coord> outputControllerCoord = null;
@@ -158,7 +161,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 				outputControllerData.promotedPieceColor
 				);
 		
-			System.out.println("coucou");
+			
 
 		// Inutile de reconstituer un objetOutputModelData<Integer>, aucun client ne le r�cup�re en mode local
 		this.view.actionOnGui(inputViewData);
