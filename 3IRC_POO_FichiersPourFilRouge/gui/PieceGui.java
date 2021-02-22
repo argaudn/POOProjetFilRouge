@@ -1,5 +1,9 @@
 package gui;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nutsAndBolts.PieceSquareColor;
@@ -34,12 +38,39 @@ public class PieceGui extends ImageView implements CheckersPieceGui {
 				pieceColor = PieceSquareColor.WHITE;
 		}
 		if (pieceColor != null) {
-			image = super.createImage(pieceColor, true);
+			image = PieceGui.createImage(pieceColor, true);
 			pieceGui = new ImageView();
 			pieceGui.setImage(image);
 		}
 
 		return pieceGui;
+	}
+	
+	/**
+	 * @param pieceColor
+	 * @param ispawn
+	 * @return une image cr��e � partir d'un fichier png
+	 */
+	private static Image createImage(PieceSquareColor pieceColor, boolean ispawn) {
+
+		Image image = null;
+		String pieceImageFile = null, nomImageFile = null;
+		File g = new File("");
+
+		if (ispawn) {
+			nomImageFile = pieceColor == PieceSquareColor.BLACK ? "PionNoir.png" : "PionBlanc.png";
+		}
+		else {	
+			nomImageFile = pieceColor == PieceSquareColor.BLACK ? "DameNoire.png" : "DameBlanche.png";
+		}
+
+		pieceImageFile = g.getAbsolutePath()+"/images/" + nomImageFile;	// TODO - attention au chemin
+		try {
+			image = new Image(new FileInputStream(pieceImageFile));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return image;
 	}
 	
 	@Override
@@ -51,8 +82,9 @@ public class PieceGui extends ImageView implements CheckersPieceGui {
 
 	@Override
 	public boolean hasSameColorAsGamer(PieceSquareColor gamerColor) {
-		
+		boolean retour = false;
 		//todo
+		return retour;
 	}
 	
 }

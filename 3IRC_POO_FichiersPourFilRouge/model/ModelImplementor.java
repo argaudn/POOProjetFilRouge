@@ -46,7 +46,6 @@ public class ModelImplementor {
 	}
 
 	public boolean isMovePieceOk(Coord initCoord, Coord targetCoord, boolean isPieceToTake) {
-
 		boolean isMovePieceOk = false;
 		
 		if(this.isPiecehere(initCoord) && !this.isPiecehere(targetCoord)) {
@@ -59,7 +58,7 @@ public class ModelImplementor {
 
 
 	public boolean movePiece(Coord initCoord, Coord targetCoord) {
-
+		
 		boolean isMovePieceDone = false;
 
 		if(this.isPiecehere(initCoord) && !this.isPiecehere(targetCoord)) {
